@@ -1,18 +1,103 @@
 ﻿@{
-    ViewData["Title"] = "Portal - X - Administrator | Online Administration Manager";
+    ViewData["Title"] = "Home Page";
 }
-<main class="hero-section d-flex justify-content-center align-items-center">
-    <div class="container d-flex justify-content-center align-items-center flex-column">
-        <i></i>
-        <h3 class="uranian-color"> Welcome to</h3>
-        <h1 class="font-body display-1 text-white fw-bold text-center">Portal - X - Administration</h1>
-        <p class="text-center fw-semibold text-white col-md-8 col-12">
-            Simplify Your Administrative Tasks Streamline your organization’s operations with our E-Administration platform. Manage tasks, monitor progress, and enhance productivity all in one place. Experience seamless administration, tailored for your needs.
-        </p>
-        <div class="d-flex gap-2">
-            <a asp-action="Index" asp-controller="Signup" class="primary-btn cursor-pointer">
-                Register
-            </a>
+
+<main class="bg-dark py-5" style="min-height:100vh;width:100%;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mb-4">
+                <h1 class="text-center display-3 fw-semibold text-white">
+                    Welcome to <span class="fw-light">Admin Suite</span>
+                </h1>
+            </div>
+            <div class="my-3">
+                <hr class="text-danger" />
+            </div>
+            <div class="col-12 my-3">
+                <h4 class="fw-semibold text-center text-white">Base</h4>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 col-12 mb-4">
+                <div class="bg-danger p-3 rounded-3 shadow-lg">
+                    <h1 class="fw-lighter text-white text-center">
+                        <a asp-action="Index" asp-controller="Users" class="text-decoration-none text-white">Users</a>
+                    </h1>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 col-12 mb-4">
+                <div class="bg-danger p-3 rounded-3 shadow-lg">
+                    <h1 class="fw-lighter text-white text-center">
+                        <a asp-action="Index" asp-controller="AdditionalInfoes" class="text-decoration-none text-white">Additional Info</a>
+                    </h1>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 col-12 mb-4">
+                <div class="bg-danger p-3 rounded-3 shadow-lg">
+                    <h1 class="fw-lighter text-white text-center">
+                        <a asp-action="Index" asp-controller="Roles" class="text-decoration-none text-white">Roles</a>
+                    </h1>
+                </div>
+            </div>
+            <div class="my-3">
+                <hr class="text-danger" />
+            </div>
+            <div class="col-12 my-3">
+                <h4 class="fw-semibold text-center text-white">Technical</h4>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 col-12 mb-4">
+                <div class="bg-primary p-3 rounded-3 shadow-lg">
+                    <h1 class="fw-lighter text-white text-center">
+                        <a asp-action="Index" asp-controller="Labs" class="text-decoration-none text-white">Labs</a>
+                    </h1>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 col-12 mb-4">
+                <div class="bg-primary p-3 rounded-3 shadow-lg">
+                    <h1 class="fw-lighter text-white text-center">
+                        <a asp-action="Index" asp-controller="Pcs" class="text-decoration-none text-white">PC</a>
+                    </h1>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 col-12 mb-4">
+                <div class="bg-primary p-3 rounded-3 shadow-lg">
+                    <h1 class="fw-lighter text-white text-center">
+                        <a asp-action="Index" asp-controller="Softwares" class="text-decoration-none text-white">Software</a>
+                    </h1>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 col-12 mb-4">
+                <div class="bg-primary p-3 rounded-3 shadow-lg">
+                    <h1 class="fw-lighter text-white text-center">
+                        <a asp-action="Index" asp-controller="Hardwares" class="text-decoration-none text-white">Hardware</a>
+                    </h1>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 col-12 mb-4">
+                <div class="bg-primary p-3 rounded-3 shadow-lg">
+                    <h1 class="fw-lighter text-white text-center">
+                        <a asp-action="Index" asp-controller="Floors" class="text-decoration-none text-white">Floor</a>
+                    </h1>
+                </div>
+            </div>
+            <div class="my-3">
+                <hr class="text-danger" />
+            </div>
+            <div class="col-12 my-3">
+                <h4 class="fw-semibold text-center text-white">Others</h4>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 col-12 mb-4">
+                <div class="bg-white p-3 rounded-3 shadow-lg">
+                    <h1 class="fw-lighter text-black text-center">
+                        <a asp-action="Index" asp-controller="Departments" class="text-decoration-none text-black">Department</a>
+                    </h1>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 col-12 mb-4">
+                <div class="bg-white p-3 rounded-3 shadow-lg">
+                    <h1 class="fw-lighter text-black text-center">
+                        <a asp-action="Index" asp-controller="Complaints" class="text-decoration-none text-black">Complaints</a>
+                    </h1>
+                </div>
+            </div>
         </div>
     </div>
 </main>

@@ -13,7 +13,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.HardwareName)
+                @Html.DisplayNameFor(model => model.SoftwareName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Processor)
@@ -34,7 +34,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.HardwareName)
+                @Html.DisplayFor(modelItem => item.SoftwareName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Processor)

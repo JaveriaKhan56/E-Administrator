@@ -47,7 +47,7 @@ namespace E_Administration.Controllers
         // GET: AdditionalInfoes/Create
         public IActionResult Create()
         {
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Username");
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
             return View();
         }
 
@@ -58,13 +58,13 @@ namespace E_Administration.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,UserId,Address,PhoneNumber,ProfilePicture,DateOfBirth,Gender")] AdditionalInfo additionalInfo)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 _context.Add(additionalInfo);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Username", additionalInfo.UserId);
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", additionalInfo.UserId);
             return View(additionalInfo);
         }
 
@@ -81,7 +81,7 @@ namespace E_Administration.Controllers
             {
                 return NotFound();
             }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Username", additionalInfo.UserId);
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", additionalInfo.UserId);
             return View(additionalInfo);
         }
 
@@ -97,7 +97,7 @@ namespace E_Administration.Controllers
                 return NotFound();
             }
 
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 try
                 {
@@ -117,7 +117,7 @@ namespace E_Administration.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Name", additionalInfo.UserId);
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", additionalInfo.UserId);
             return View(additionalInfo);
         }
 

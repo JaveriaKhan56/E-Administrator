@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using E_Administration.Models;
-using System.Security.Claims;
 
 namespace E_Administration.Controllers
 {
@@ -33,6 +32,7 @@ namespace E_Administration.Controllers
             {
                 return NotFound();
             }
+
             var user = await _context.Users
                 .Include(u => u.Role)
                 .FirstOrDefaultAsync(m => m.Id == id);
@@ -64,7 +64,7 @@ namespace E_Administration.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RoleId"] = new SelectList(_context.Roles, "RoleId", "RoleName", user.RoleId);
+            ViewData["RoleId"] = new SelectList(_context.Roles, "RoleId", "RoleId", user.RoleId);
             return View(user);
         }
 
@@ -96,7 +96,7 @@ namespace E_Administration.Controllers
             {
                 return NotFound();
             }
-            
+
             if (!ModelState.IsValid)
             {
                 try

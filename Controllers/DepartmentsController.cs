@@ -21,8 +21,7 @@ namespace E_Administration.Controllers
         // GET: Departments
         public async Task<IActionResult> Index()
         {
-            var department = await _context.Departments.ToListAsync();
-            return View(department);
+            return View(await _context.Departments.ToListAsync());
         }
 
         // GET: Departments/Details/5
@@ -155,4 +154,3 @@ namespace E_Administration.Controllers
         }
     }
 }
-

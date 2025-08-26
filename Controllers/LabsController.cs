@@ -58,7 +58,7 @@ namespace E_Administration.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("LabId,FloorId,LabName")] Lab lab)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 _context.Add(lab);
                 await _context.SaveChangesAsync();

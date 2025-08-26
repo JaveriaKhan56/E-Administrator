@@ -85,7 +85,7 @@ namespace E_Administration.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("HardId,HardwareName,Processor,Ram,StorageCapacity,OperatingSystem")] Hardware hardware)
+        public async Task<IActionResult> Edit(int id, [Bind("HardId,SoftwareName,Processor,Ram,StorageCapacity,OperatingSystem")] Hardware hardware)
         {
             if (id != hardware.HardId)
             {

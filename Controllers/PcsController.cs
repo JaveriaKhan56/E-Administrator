@@ -49,9 +49,9 @@ namespace E_Administration.Controllers
         // GET: Pcs/Create
         public IActionResult Create()
         {
-            ViewData["HardId"] = new SelectList(_context.Hardwares, "HardId", "HardwareName");
-            ViewData["LabId"] = new SelectList(_context.Labs, "LabId", "LabName");
-            ViewData["SoftId"] = new SelectList(_context.Softwares, "SoftId", "SoftwareName");
+            ViewData["HardId"] = new SelectList(_context.Hardwares, "HardId", "HardId");
+            ViewData["LabId"] = new SelectList(_context.Labs, "LabId", "LabId");
+            ViewData["SoftId"] = new SelectList(_context.Softwares, "SoftId", "SoftId");
             return View();
         }
 
@@ -62,18 +62,17 @@ namespace E_Administration.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("PcId,SoftId,HardId,LabId,PcName,PurchasedAt")] Pc pc)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 _context.Add(pc);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["HardId"] = new SelectList(_context.Hardwares, "HardId", "HardwareName", pc.HardId);
-            ViewData["LabId"] = new SelectList(_context.Labs, "LabId", "LabName", pc.LabId);
-            ViewData["SoftId"] = new SelectList(_context.Softwares, "SoftId", "SoftwareName", pc.SoftId);
+            ViewData["HardId"] = new SelectList(_context.Hardwares, "HardId", "HardId", pc.HardId);
+            ViewData["LabId"] = new SelectList(_context.Labs, "LabId", "LabId", pc.LabId);
+            ViewData["SoftId"] = new SelectList(_context.Softwares, "SoftId", "SoftId", pc.SoftId);
             return View(pc);
         }
-
 
         // GET: Pcs/Edit/5
         public async Task<IActionResult> Edit(int? id)

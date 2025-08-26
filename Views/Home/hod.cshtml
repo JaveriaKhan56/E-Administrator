@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<main class="bg-dark py-5" style="min-height:100vh;width:100%;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mb-4">
+                <h1 class="text-center display-3 fw-semibold text-white">
+                    Welcome to <span class="fw-light">Head Of Department Suite</span>
+                </h1>
+            </div>
+            <div class="my-3">
+                <hr class="text-danger" />
+            </div>
+            <div class="col-12 my-3">
+                <h4 class="fw-semibold text-center text-white">Base</h4>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12 mb-4">
+                <div class="bg-success p-3 rounded-3 shadow-lg">
+                    <h1 class="fw-lighter text-white text-center">
+                        <a asp-action="Index" asp-controller="hodOfInstructor" class="text-decoration-none text-white">Instructor</a>
+                    </h1>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12 mb-4">
+                <div class="bg-success p-3 rounded-3 shadow-lg">
+                    <h1 class="fw-lighter text-white text-center">
+                        <a asp-action="Index" asp-controller="hodOfTech" class="text-decoration-none text-white">Technical Staff</a>
+                    </h1>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12 mb-4">
+                <div class="bg-danger p-3 rounded-3 shadow-lg">
+                    <h1 class="fw-lighter text-white text-center">
+                        <a asp-action="Index" asp-controller="Courses" class="text-decoration-none text-white">Courses</a>
+                    </h1>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12 mb-4">
+                <div class="bg-danger p-3 rounded-3 shadow-lg">
+                    <h1 class="fw-lighter text-white text-center">
+                        <a asp-action="Index" asp-controller="Schedules" class="text-decoration-none text-white">Schedule</a>
+                    </h1>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+</main>

@@ -9,22 +9,23 @@ using E_Administration.Models;
 
 namespace E_Administration.Controllers
 {
-    public class FloorsController : Controller
+    public class hodOfInstructorController : Controller
     {
         private readonly EAdministrationContext _context;
 
-        public FloorsController(EAdministrationContext context)
+        public hodOfInstructorController(EAdministrationContext context)
         {
             _context = context;
         }
 
-        // GET: Floors
+        // GET: hodOfInstructor
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Floors.ToListAsync());
+            var eAdministrationContext = _context.Users.Include(u => u.Role).Where(u => u.RoleId ==1);
+            return View(await eAdministrationContext.ToListAsync());
         }
 
-        // GET: Floors/Details/5
+        // GET: hodOfInstructor/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -32,39 +33,48 @@ namespace E_Administration.Controllers
                 return NotFound();
             }
 
-            var floor = await _context.Floors
-                .FirstOrDefaultAsync(m => m.FloorId == id);
-            if (floor == null)
+            var user = await _context.Users
+                .Include(u => u.Role)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (user == null)
             {
                 return NotFound();
             }
 
-            return View(floor);
+            return View(user);
         }
 
-        // GET: Floors/Create
+        // GET: hodOfInstructor/Create
         public IActionResult Create()
         {
+            var selectedRoleIds = new List<int> { 1 };
+
+            var roles = _context.Roles
+                .Where(role => selectedRoleIds.Contains(role.RoleId))
+                .ToList();
+
+            ViewData["RoleId"] = new SelectList(roles, "RoleId", "RoleId");
             return View();
         }
 
-        // POST: Floors/Create
+        // POST: hodOfInstructor/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FloorId,FloorName,CreatedAt")] Floor floor)
+        public async Task<IActionResult> Create([Bind("Id,Username,Password,Email,RoleId,CreatedAt")] User user)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _context.Add(floor);
+                _context.Add(user);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(floor);
+            ViewData["RoleId"] = new SelectList(_context.Roles, "RoleId", "RoleId", user.RoleId);
+            return View(user);
         }
 
-        // GET: Floors/Edit/5
+        // GET: hodOfInstructor/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -72,36 +82,37 @@ namespace E_Administration.Controllers
                 return NotFound();
             }
 
-            var floor = await _context.Floors.FindAsync(id);
-            if (floor == null)
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
             {
                 return NotFound();
             }
-            return View(floor);
+            ViewData["RoleId"] = new SelectList(_context.Roles, "RoleId", "RoleId", user.RoleId);
+            return View(user);
         }
 
-        // POST: Floors/Edit/5
+        // POST: hodOfInstructor/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("FloorId,FloorName,CreatedAt")] Floor floor)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Username,Password,Email,RoleId,CreatedAt")] User user)
         {
-            if (id != floor.FloorId)
+            if (id != user.Id)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(floor);
+                    _context.Update(user);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!FloorExists(floor.FloorId))
+                    if (!UserExists(user.Id))
                     {
                         return NotFound();
                     }
@@ -112,10 +123,11 @@ namespace E_Administration.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(floor);
+            ViewData["RoleId"] = new SelectList(_context.Roles, "RoleId", "RoleId", user.RoleId);
+            return View(user);
         }
 
-        // GET: Floors/Delete/5
+        // GET: hodOfInstructor/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -123,34 +135,35 @@ namespace E_Administration.Controllers
                 return NotFound();
             }
 
-            var floor = await _context.Floors
-                .FirstOrDefaultAsync(m => m.FloorId == id);
-            if (floor == null)
+            var user = await _context.Users
+                .Include(u => u.Role)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (user == null)
             {
                 return NotFound();
             }
 
-            return View(floor);
+            return View(user);
         }
 
-        // POST: Floors/Delete/5
+        // POST: hodOfInstructor/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var floor = await _context.Floors.FindAsync(id);
-            if (floor != null)
+            var user = await _context.Users.FindAsync(id);
+            if (user != null)
             {
-                _context.Floors.Remove(floor);
+                _context.Users.Remove(user);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool FloorExists(int id)
+        private bool UserExists(int id)
         {
-            return _context.Floors.Any(e => e.FloorId == id);
+            return _context.Users.Any(e => e.Id == id);
         }
     }
 }

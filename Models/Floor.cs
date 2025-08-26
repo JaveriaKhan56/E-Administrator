@@ -9,7 +9,5 @@ public partial class Floor
 
     public DateTime CreatedAt { get; set; }
 
-    public string? FloorName { get; set; }
-
     public virtual ICollection<Lab> Labs { get; set; } = new List<Lab>();
 }
